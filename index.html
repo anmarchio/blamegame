@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slot Machine</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        .slot-machine {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Who is to blame today?</h1>
+    <div class="slot-machine" id="slot-machine">Press the button to find out</div>
+    <button class="button" onclick="spinSlotMachine()">Spin</button>
+
+    <script>
+        const toblame = ["Juan Bernat", "Auslaender", "Die da oben", "Ned Flanders", "Globalisten"];
+
+        function spinSlotMachine() {
+            const slotMachine = document.getElementById('slot-machine');
+            slotMachine.textContent = 'Spinning...';
+
+            setTimeout(function() {
+                const randomIndex = Math.floor(Math.random() * toblame.length);
+                slotMachine.textContent = toblame[randomIndex];
+            }, 1000); // Delay to simulate spinning effect
+        }
+    </script>
+</body>
+</html>

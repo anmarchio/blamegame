@@ -7,234 +7,153 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 50px;
+            background-color: #222;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
         }
+
         .slot-machine {
-            margin-top: 20px;
-            font-size: 24px;
-            font-weight: bold;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 400px;
+            height: 300px;
+            border: 5px solid #ffcc00;
+            border-radius: 10px;
+            background-color: #333;
+            box-shadow: 0 0 20px rgba(255, 204, 0, 0.8);
         }
-        .button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 16px;
+
+        .slot-display {
+            width: 90%;
+            height: 150px;
+            margin: 20px auto;
+            background: black;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 3px solid #fff;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .slot-items {
+            position: absolute;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            animation: none;
+        }
+
+        .slot-item {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ffcc00;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+        }
+
+        .lever {
+            position: absolute;
+            right: -50px;
+            top: 50px;
+            width: 30px;
+            height: 150px;
+            background-color: #666;
+            border-radius: 15px;
             cursor: pointer;
+        }
+
+        .lever:active {
+            transform: rotate(20deg);
+        }
+
+        .lever-ball {
+            position: absolute;
+            bottom: -20px;
+            left: 5px;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+        }
+
+        .options-panel {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .options-panel select {
+            padding: 10px;
+            font-size: 1rem;
+            background-color: #444;
+            color: #fff;
+            border: 2px solid #ffcc00;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            color: #00ff00;
+            text-align: center;
+        }
+
+        @keyframes spin {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(-100%);
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Who is to blame today?</h1>
-    <div class="slot-machine" id="slot-machine">Press the button to find out</div>
-    <button class="button" onclick="spinSlotMachine()">Spin</button>
+    <h2>Schuld-O-Mat</h2>
+    <div class="title" id="title">
+        Sie haben einen schlechten Tag?
+        Wer kennt es nicht: Gerade haben Ihnen Ihre Eltern eröffnet, dass sie adoptiert sind, ihre Frau ist ihnen davongelaufen und der Kollege hat ihnen die Beförderung vor der Nase weggeschnappt.
+        Sonst gelingt auch nicht besonders viel. Daran muss jemand anderes Schuld sein, ganz klar! Es kann überhaupt nicht anders sein, als das eine übergroße dunkle Macht, eine zwielichtige Gruppierung oder ihr persönlicher Feind dahinter steckt.
+        Sie haben es schließlich schon immer gewusst!<br /><br />
+        Wir präsentieren: <b>Schuld-O-Mat</b>! <br />
+        Endlich ein Instrument, das Ihnen sagt, wen sie heute für alles Übel verantwortlich machen können!
+    </div>
+    <div class="slot-machine">
+        <div class="slot-display">
+            <div class="slot-items" id="slotItems">
+                <div class="slot-item">START</div>
+            </div>
+        </div>
+        <div class="lever" id="lever">
+            <div class="lever-ball"></div>
+        </div>
+    </div>
 
-    <script>
-        const toblame = [
-            "Juan Bernat",
-            "Kriminelle Ausländer",
-            "Die da oben",
-            "Dämlicher Flanders",
-            "Globalisten",
-            "Die Grühüünen",
-            "Altparteien",
-            "Windräder",
-            "Deep State",
-            "Faule Beamte",
-            "Faule Ausländer",
-            "Jugend von heute",
-            "Gen Z",
-            "Schlafschafe",
-            "Die Linken",
-            "Sogenannte Experten",
-            "Klimalügner",
-            "Klimakleber",
-            "Weltjudentum",
-            "Eliten",
-            "Die Studierten",
-            "korrupte Politiker",
-            "Mein verfickter Nachbar",
-            "Kleine Paschas",
-            "Asylanten",
-            "Gutmenschen",
-            "Reptiloiden",
-            "Big Pharma",
-            "Influencer",
-            "Feministen",
-            "Technokraten",
-            "Vegane Hipster",
-            "Künstliche Intelligenz",
-            "Die EU",
-            "Brüssel",
-            "Gender-Gaga",
-            "Cancel Culture",
-            "ÖRR (öffentlich-rechtlicher Rundfunk)",
-            "Lügenpresse",
-            "Steuerberater",
-            "Mietwucherer",
-            "Kapitalismus",
-            "Sozialismus",
-            "Kommunisten",
-            "Gendersprache",
-            "Schulreform",
-            "Volksverräter",
-            "Maskenpflicht",
-            "Digitalisierung",
-            "TikTok",
-            "Facebook-Algorithmen",
-            "Die Chinesen",
-            "Die Amerikaner",
-            "Hacker",
-            "Lobbyisten",
-            "Propagandamedien",
-            "Der tiefe Staat",
-            "Das Finanzamt",
-            "Der Chef",
-            "Scheidungsanwälte",
-            "Influencer",
-            "Kryptobros",
-            "NFTs",
-            "Die Rentner",
-            "Kreditkartenfirmen",
-            "Weltwirtschaftsforum",
-            "George Soros",
-            "Elon Musk",
-            "Jeff Bezos",
-            "Bill Gates",
-            "Greta Thunberg",
-            "Mark Zuckerberg",
-            "Autofahrer",
-            "Radfahrer",
-            "E-Scooter-Fahrer",
-            "Pendler",
-            "Verkehrspolitik",
-            "SUV-Fahrer",
-            "Die neue Rechtschreibung",
-            "Montessorischulen",
-            "Influencer-Eltern",
-            "Kinderschutzbund",
-            "Die Bahn",
-            "DAX-Unternehmen",
-            "Anzugträger",
-            "Digitalnomaden",
-            "Dropshipper",
-            "Berater",
-            "Raucher",
-            "Nichtraucher",
-            "Verschwörungstheoretiker",
-            "Esoteriker",
-            "Linkstwitter",
-            "Rechtstwitter",
-            "Die Mitte",
-            "Der Kapitalmarkt",
-            "Die Gewerkschaften",
-            "Kitas",
-            "Fridays for Future",
-            "Extinction Rebellion",
-            "Die WHO",
-            "Die UNO",
-            "Regenbogenflaggen",
-            "Die CSU",
-            "Die FDP",
-            "Die SPD",
-            "CDU-Merkelismus",
-            "Querdenker",
-            "Impfgegner",
-            "Impfpflicht",
-            "Banken",
-            "Kreditvergabe",
-            "Bauämter",
-            "Bauauflagen",
-            "Die Immobilienblase",
-            "Zugezogene",
-            "Dorfbewohner",
-            "Touristen",
-            "Gentrifizierer",
-            "Mietnomaden",
-            "Steuerschlupflöcher",
-            "Offshore-Konten",
-            "Schweizer Banken",
-            "Die FIFA",
-            "Die UEFA",
-            "Die Schiris",
-            "Kneipenkicker",
-            "Kryptowährungen",
-            "Altcoins",
-            "Dogecoin",
-            "Daytrader",
-            "Wallstreetbets",
-            "Der Euro",
-            "Der Dollar",
-            "Die AfD",
-            "Antifa",
-            "Nazis",
-            "Pazifisten",
-            "Funktionäre",
-            "Versicherungsmakler",
-            "Immobilienhaie",
-            "Versicherungen",
-            "Kreditkartenanbieter",
-            "Telekomhotlines",
-            "Callcenter-Mitarbeiter",
-            "Paketboten",
-            "Amazon-Bewertungen",
-            "Online-Bewertungen",
-            "Apple-User",
-            "Android-User",
-            "Die Cloud",
-            "Passwortmanager",
-            "Cookies",
-            "Google-Ads",
-            "Pop-Up-Werbung",
-            "Influencer-Werbung",
-            "Coaches",
-            "Life Coaches",
-            "Fitness Coaches",
-            "Online-Dating",
-            "Tinder",
-            "OnlyFans",
-            "Boomer",
-            "Millennials",
-            "iPhone-Besitzer",
-            "Android-Besitzer",
-            "Gaming-Streamer",
-            "Politiker-Talkshows",
-            "Steuerberater",
-            "Zensurbehörden",
-            "Algorithmen",
-            "Autokorrektur",
-            "Captcha-Codes",
-            "NFT-Pusher",
-            "Das Metaverse",
-            "Chatbots",
-            "ChatGPT",
-            "Der Mond",
-            "Meine eigene Faulheit",
-            "Die IT",
-            "Karl Klammer",
-            "Meine eigene Faulheit",
-            "Toby Flenderson",
-            "Jim Harper",
-            "Der Ernie",
-            "Der Ulf",
-            "Meine eigene Faulheit",
-            "Der USB-Treiber",
-            "Der Drucker",
-            "BMW-Fahrer",
-            "Mercedes-Fahrer",
-            "Sonntagsfahrer",
-            "Raser",
-            "Startup-Bros"
-        ];
+    <div class="options-panel">
+        <select id="modeSelector">
+            <option value="normal">Normal</option>
+            <option value="radical">Radical</option>
+            <option value="radical-as-fk">Radical as FK</option>
+            <option value="conspiracy">Conspiracy</option>
+        </select>
+    </div>
 
-        function spinSlotMachine() {
-            const slotMachine = document.getElementById('slot-machine');
-            slotMachine.textContent = 'Spinning...';
+    <div class="result" id="result"></div>
 
-            setTimeout(function() {
-                const randomIndex = Math.floor(Math.random() * toblame.length);
-                slotMachine.textContent = toblame[randomIndex];
-            }, 1000); // Delay to simulate spinning effect
-        }
-    </script>
+    <script src="slotmachine.js"></script>
 </body>
 </html>

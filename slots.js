@@ -1,4 +1,5 @@
-const toblame = normal: [
+const namePools = {
+            normal: [
             "Juan Bernat",
             "Kriminelle Ausländer",
             "Die da oben",
@@ -192,8 +193,7 @@ const toblame = normal: [
             "Mercedes-Fahrer",
             "Sonntagsfahrer",
             "Raser",
-            "Startup-Bros"
-        ],
+            "Startup-Bros"],
         radical: ["MegaBob", "SuperAlice", "UltraEve", "RadCharlie", "HyperDave"],
         "radical-as-fk": ["Bobinator", "Alicezilla", "Evex", "Charlieon", "Davemaster"],
         conspiracy: ["Deep Bob", "Illuminati Alice", "Eve the Shadow", "Charlie Q", "Dave the Lizard"]

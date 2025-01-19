@@ -1,4 +1,4 @@
-const toblame = [
+const toblame = normal: [
             "Juan Bernat",
             "Kriminelle Ausländer",
             "Die da oben",
@@ -193,14 +193,49 @@ const toblame = [
             "Sonntagsfahrer",
             "Raser",
             "Startup-Bros"
-        ];
+        ],
+        radical: ["MegaBob", "SuperAlice", "UltraEve", "RadCharlie", "HyperDave"],
+        "radical-as-fk": ["Bobinator", "Alicezilla", "Evex", "Charlieon", "Davemaster"],
+        conspiracy: ["Deep Bob", "Illuminati Alice", "Eve the Shadow", "Charlie Q", "Dave the Lizard"]
+};
+        const slotItemsContainer = document.getElementById('slotItems');
+        const lever = document.getElementById('lever');
+        const modeSelector = document.getElementById('modeSelector');
+        const resultDisplay = document.getElementById('result');
 
-        function spinSlotMachine() {
-            const slotMachine = document.getElementById('slot-machine');
-            slotMachine.textContent = 'Spinning...';
+        let spinning;
 
-            setTimeout(function() {
-                const randomIndex = Math.floor(Math.random() * toblame.length);
-                slotMachine.textContent = toblame[randomIndex];
-            }, 1000); // Delay to simulate spinning effect
+        function startSpin(names) {
+            slotItemsContainer.style.animation = 'none';
+            slotItemsContainer.innerHTML = names.map(name => `<div class="slot-item">${name}</div>`).join('');
+
+            setTimeout(() => {
+                slotItemsContainer.style.animation = `spin 0.1s linear infinite`;
+            }, 10);
         }
+
+        function stopSpin(names) {
+            clearInterval(spinning);
+            const finalName = names[Math.floor(Math.random() * names.length)];
+            slotItemsContainer.style.animation = 'none';
+            slotItemsContainer.innerHTML = `<div class="slot-item">${finalName}</div>`;
+            resultDisplay.textContent = `The machine stopped on: ${finalName}`;
+        }
+
+        lever.addEventListener('click', () => {
+            // Animate the lever
+            lever.style.transform = 'rotate(20deg)';
+            setTimeout(() => {
+                lever.style.transform = 'rotate(0deg)';
+            }, 200);
+
+            // Start spinning
+            const mode = modeSelector.value;
+            const names = namePools[mode];
+            startSpin(names);
+
+            // Stop spinning after 3 seconds
+            setTimeout(() => {
+                stopSpin(names);
+            }, 3000);
+        });

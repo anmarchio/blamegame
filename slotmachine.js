@@ -1,33 +1,43 @@
 const namePools = {
-            normal: [
-            "Juan Bernat",
-            "Kriminelle Ausländer",
-            "Die da oben",
-            "Dämlicher Flanders",
-            "Globalisten",
-            "Die Grühüünen",
-            "Altparteien",
+            radical: [
+            "Ausländer",
             "Windräder",
             "Deep State",
+            "Altparteien",
+            "Sozialtourismus",
+            "Klimakleber",
+            "Kleine Paschas",
+            "Asylanten",
+            "Gender-Gaga",
+            "Cancel Culture",
+            "Volksverräter",
+            "Maskenpflicht",
+            ],
+            conspiracy:[
+            "Globalisten",
+            "Schlafschafe",
+            "Klimalügner",
+            "Weltjudentum",
+            "Gutmenschen",
+            "Reptiloiden",
+            "Big Pharma",
+            "ÖRR (öffentlich-rechtlicher Rundfunk)",
+            "Lügenpresse",
+            ],
+            normal: [
+            "Juan Bernat",
+            "Die da oben",
+            "Dämlicher Flanders",
+            "Die Grühünen",
             "Faule Beamte",
-            "Faule Ausländer",
             "Jugend von heute",
             "Gen Z",
-            "Schlafschafe",
             "Die Linken",
             "Sogenannte Experten",
-            "Klimalügner",
-            "Klimakleber",
-            "Weltjudentum",
             "Eliten",
             "Die Studierten",
             "korrupte Politiker",
             "Mein verfickter Nachbar",
-            "Kleine Paschas",
-            "Asylanten",
-            "Gutmenschen",
-            "Reptiloiden",
-            "Big Pharma",
             "Influencer",
             "Feministen",
             "Technokraten",
@@ -35,10 +45,6 @@ const namePools = {
             "Künstliche Intelligenz",
             "Die EU",
             "Brüssel",
-            "Gender-Gaga",
-            "Cancel Culture",
-            "ÖRR (öffentlich-rechtlicher Rundfunk)",
-            "Lügenpresse",
             "Steuerberater",
             "Mietwucherer",
             "Kapitalismus",
@@ -46,8 +52,6 @@ const namePools = {
             "Kommunisten",
             "Gendersprache",
             "Schulreform",
-            "Volksverräter",
-            "Maskenpflicht",
             "Digitalisierung",
             "TikTok",
             "Facebook-Algorithmen",
@@ -194,48 +198,4 @@ const namePools = {
             "Sonntagsfahrer",
             "Raser",
             "Startup-Bros"],
-        radical: ["MegaBob", "SuperAlice", "UltraEve", "RadCharlie", "HyperDave"],
-        "radical-as-fk": ["Bobinator", "Alicezilla", "Evex", "Charlieon", "Davemaster"],
-        conspiracy: ["Deep Bob", "Illuminati Alice", "Eve the Shadow", "Charlie Q", "Dave the Lizard"]
 };
-        const slotItemsContainer = document.getElementById('slotItems');
-        const lever = document.getElementById('lever');
-        const modeSelector = document.getElementById('modeSelector');
-        const resultDisplay = document.getElementById('result');
-
-        let spinning;
-
-        function startSpin(names) {
-            slotItemsContainer.style.animation = 'none';
-            slotItemsContainer.innerHTML = names.map(name => `<div class="slot-item">${name}</div>`).join('');
-
-            setTimeout(() => {
-                slotItemsContainer.style.animation = `spin 0.1s linear infinite`;
-            }, 10);
-        }
-
-        function stopSpin(names) {
-            clearInterval(spinning);
-            const finalName = names[Math.floor(Math.random() * names.length)];
-            slotItemsContainer.style.animation = 'none';
-            slotItemsContainer.innerHTML = `<div class="slot-item">${finalName}</div>`;
-            resultDisplay.textContent = `The machine stopped on: ${finalName}`;
-        }
-
-        lever.addEventListener('click', () => {
-            // Animate the lever
-            lever.style.transform = 'rotate(20deg)';
-            setTimeout(() => {
-                lever.style.transform = 'rotate(0deg)';
-            }, 200);
-
-            // Start spinning
-            const mode = modeSelector.value;
-            const names = namePools[mode];
-            startSpin(names);
-
-            // Stop spinning after 3 seconds
-            setTimeout(() => {
-                stopSpin(names);
-            }, 3000);
-        });

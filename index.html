@@ -244,9 +244,10 @@
 	<p>Ich fühle mich:</p>
     <div class="options-panel">
         <select id="modeSelector">
+            <option value="general">Von allem etwas</option>
             <option value="normal">Normal</option>
-            <option value="radical">Nerdy</option>
-            <option value="radical-as-fk">"Gesunder Menschenverstand"</option>
+            <option value="nerdy">Nerdy</option>
+            <option value="radical">"Gesunder Menschenverstand"</option>
             <option value="conspiracy">"Aufgeklärt"</option>
         </select>
     </div>
@@ -301,53 +302,53 @@
     <!-- Slot Machine Movements -->
     <script text="type/javascript">
         const slotItemsContainer = document.getElementById('slotItems');
-    const lever = document.getElementById('lever');
-    const modeSelector = document.getElementById('modeSelector');
-    const resultDisplay = document.getElementById('result');
+        const lever = document.getElementById('lever');
+        const modeSelector = document.getElementById('modeSelector');
+        const resultDisplay = document.getElementById('result');
 
-    const leverSound = new Audio('ka-ching.mp3');
-    const stopSound = new Audio('mixkit-magical-coin-win-1936.wav');
+        const leverSound = new Audio('ka-ching.mp3');
+        const stopSound = new Audio('mixkit-magical-coin-win-1936.wav');
 
-    let spinning;
+        let spinning;
 
-            function startSpin(names) {
-                slotItemsContainer.style.animation = 'none';
-                slotItemsContainer.innerHTML = names.map(name => `<div class="slot-item">${name}</div>`).join('');
+        function startSpin(names) {
+            slotItemsContainer.style.animation = 'none';
+            slotItemsContainer.innerHTML = names.map(name => `<div class="slot-item">${name}</div>`).join('');
 
-                setTimeout(() => {
-                    slotItemsContainer.style.animation = `spin 0.1s linear infinite`;
-                }, 10);
-            }
+            setTimeout(() => {
+                slotItemsContainer.style.animation = `spin 0.1s linear infinite`;
+            }, 10);
+        }
 
-            function stopSpin(names) {
-                clearInterval(spinning);
-                const finalName = names[Math.floor(Math.random() * names.length)];
-                slotItemsContainer.style.animation = 'none';
-                slotItemsContainer.innerHTML = `<div class="slot-item">${finalName}</div>`;
-                resultDisplay.textContent = `The machine stopped on: ${finalName}`;
-                stopSound.play(); // Play stop sound
-            }
+        function stopSpin(names) {
+            clearInterval(spinning);
+            const finalName = names[Math.floor(Math.random() * names.length)];
+            slotItemsContainer.style.animation = 'none';
+            slotItemsContainer.innerHTML = `<div class="slot-item">${finalName}</div>`;
+            resultDisplay.textContent = `The machine stopped on: ${finalName}`;
+			stopSound.play(); // Play stop sound
+		}
 
-            lever.addEventListener('click', () => {
-                // Play lever sound
-                leverSound.play();
+        lever.addEventListener('click', () => {
+			// Play lever sound
+			leverSound.play();
 
-                // Animate the lever
-                lever.style.transform = 'rotate(20deg)';
-                setTimeout(() => {
-                    lever.style.transform = 'rotate(0deg)';
-                }, 200);
+			// Animate the lever
+            lever.style.transform = 'rotate(20deg)';
+            setTimeout(() => {
+                lever.style.transform = 'rotate(0deg)';
+            }, 200);
 
-                // Start spinning
-                const mode = modeSelector.value;
-                const names = namePools[mode];
-                startSpin(names);
+            // Start spinning
+            const mode = modeSelector.value;
+            const names = namePools[mode];
+            startSpin(names);
 
-                // Stop spinning after 3 seconds
-                setTimeout(() => {
-                    stopSpin(names);
-                }, 3000);
-            });
+            // Stop spinning after 3 seconds
+            setTimeout(() => {
+                stopSpin(names);
+            }, 3000);
+        });
     </script>
 
     <!-- Meter script -->

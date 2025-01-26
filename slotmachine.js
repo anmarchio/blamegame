@@ -1,5 +1,7 @@
 const namePools = {
             radical: [
+            "Bürgergeldempfänger",
+            "Sozialschmarotzer",
             "Ausländer",
             "Windräder",
             "Altparteien",

@@ -1,4 +1,4 @@
-# Blame Game (German: Schuld-O-Mat)
+# Blame Game (aka Schuld-O-Mat) for #BTW2025
 
 Check out the blame game on github pages: http://anmarchio.github.io/blamegame
 

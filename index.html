@@ -22,8 +22,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 400px;
-            height: 300px;
+            width: 250px;
+            height: 200px;
             border: 5px solid #ffcc00;
             border-radius: 10px;
             background-color: #333;
@@ -33,7 +33,7 @@
         .slot-display {
             width: 90%;
             height: 160px;
-			margin: 60px auto;
+			margin: 40px auto;
             background: black;
             overflow: hidden;
             display: flex;
@@ -46,7 +46,7 @@
 
         .slot-items {
             position: absolute;
-            top: 0;
+            top: 40;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -55,20 +55,20 @@
         }
 
         .slot-item {
-            font-size: 2rem;
+            font-size: 1.2rem;
             font-weight: bold;
             color: #ffcc00;
-            height: 50px;
-            line-height: 50px;
+            height: 20px;
+            line-height: 20px;
             text-align: center;
         }
 
         .lever {
             position: absolute;
-            right: -50px;
+            right: -30px;
             top: 50px;
-            width: 30px;
-            height: 150px;
+            width: 20px;
+            height: 100px;
             background-color: #666;
             border-radius: 15px;
             cursor: pointer;
@@ -80,8 +80,8 @@
 
         .lever-ball {
             position: absolute;
-            bottom: 150px;
-            left: 5px;
+            bottom: 100px;
+            left: 0px;
             width: 20px;
             height: 20px;
             background-color: red;
@@ -107,18 +107,40 @@
 
         .title {
             padding: 10px;
-			margin-top: -100px;
-            margin-bottom: 40px;
+			margin-top: 0px;
+            margin-bottom: 30px;
             width: 1000px;
-			font-size: 1.5rem;
+			font-size: 1.3rem;
             color: #ffcc00;
             text-align: center;
         }
-        .result {
-            margin-top: 20px;
-            font-size: 1.5rem;
-            color: #00ff00;
+        .label {
+            padding: 10px;
+			margin-top: 20px;
+            width: 250px;
+			font-size: 1.3rem;
+            color: #ffcc00;
             text-align: center;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #333;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            color: #fff;
         }
 
         @keyframes spin {
@@ -129,106 +151,24 @@
                 transform: translateY(-100%);
             }
         }
-
-        /*
-         * CSLab Meter
-         * https://cslab.in/coding-in-sikar-creating-an-interactive-meter-component-with-html-css-and-javascript/ */
-         */
-        /* Style for the color wheel container */
-        .colors-container {
-          height: 150px;
-          overflow: hidden;
-          width: 300px;
-        }
-
-        /* Create a colorful background using conic gradient */
-        .color-wheel {
-          width: 300px;
-          height: 300px;
-          border-radius: 50%;
-          background: conic-gradient(rgb(116,243,251), rgb(255,224,5) 90deg, rgb(5,147,255) 270deg, rgb(116,243,251));
-        }
-
-        /* Main container for the meter */
-        .meter {
-          position: relative;
-          width: 300px;
-        }
-
-        /* Style for the knob */
-        .knob {
-          width: 100px;
-          height: 100px;
-          position: absolute;
-          bottom: 100px;
-          left: 100px;
-          background: rgba(255,255,255,0.6);
-          border-radius: 50%;
-          box-shadow: 0px 5px 10px rgba(0,0,150,0.1),
-            inset -5px 5px 10px rgba(255,255,255,1);
-          backdrop-filter: blur(10px);
-          display: grid;
-          place-content: center;
-          transform: rotate(-90deg);
-        }
-
-        /* Style for the needle */
-        .needle {
-          background: #fff;
-          width: 50px;
-          height: 50px;
-          border-radius: 50%;
-          position: relative;
-          transform: rotate(30deg);
-          filter: drop-shadow(0px 0px 10px rgba(0,0,150,0.2));
-          transition: all 0.3s;
-        }
-
-        /* Style for the pointer (part of the needle) */
-        div.pointer {
-          background: #fff;
-          height: 100px;
-          width: 10px;
-          position: absolute;
-          bottom: 25px;
-          left: 20px;
-          border-radius: 50% 50% 0px 0px;
-        }
-
-        /* Option labels */
-        .meter-options {
-          position: relative;
-          width: 100%;
-          margin-top: -20px;
-          display: flex;
-          justify-content: space-between;
-          padding: 0 20px;
-        }
-        /* Style for the reading display */
-        .reading {
-          font-size: 24px;
-          position: absolute;
-          width: 100%;
-          text-align: center;
-          color: #fff;
-          text-shadow: 0px 5px 10px rgba(0,0,0,0.3);
-          font-family: arial;
-          font-weight: bold;
-          opacity: 0.8;
-          top: 30px;
-          user-select: none;
-        }
     </style>
 </head>
 <body>
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <p>Sie haben einen schlechten Tag? Wer kennt es nicht: Gerade haben Ihnen Ihre Eltern eröffnet, dass sie adoptiert sind, ihre Frau ist ihnen davongelaufen und der Kollege hat ihnen die Beförderung vor der Nase weggeschnappt.
+    Sonst gelingt auch nicht besonders viel. Daran muss jemand anderes Schuld sein, ganz klar! Es kann überhaupt nicht anders sein, als das eine übergroße dunkle Macht, eine zwielichtige Gruppierung oder ihr persönlicher Feind dahinter steckt.
+    Sie haben es schließlich schon immer gewusst!<br /><br />
+            Wir präsentieren den <b>Schuld-O-Mat</b>!</p>
+            <button id="closeModal">Ok</button>
+        </div>
+    </div>
     <div class="title" id="title">
 		<h2>Schuld-O-Mat</h2>
-        Sie haben einen schlechten Tag?
-        <!-- Wer kennt es nicht: Gerade haben Ihnen Ihre Eltern eröffnet, dass sie adoptiert sind, ihre Frau ist ihnen davongelaufen und der Kollege hat ihnen die Beförderung vor der Nase weggeschnappt.
-        Sonst gelingt auch nicht besonders viel. Daran muss jemand anderes Schuld sein, ganz klar! Es kann überhaupt nicht anders sein, als das eine übergroße dunkle Macht, eine zwielichtige Gruppierung oder ihr persönlicher Feind dahinter steckt.
-        Sie haben es schließlich schon immer gewusst!<br /><br />
-        Wir präsentieren: <b>Schuld-O-Mat</b>! <br /> -->
-        Finden Sie heraus, wer heute an allem Schuld ist!
+        <div class="info-icon" id="infoIcon">
+            &#9432;
+        </div><br />
+        Wer heute Schuld hat:
     </div>
     <div class="slot-machine">
         <div class="slot-display">
@@ -241,60 +181,16 @@
         </div>
     </div>
 
-	<p>Ich fühle mich:</p>
+    <div class="label" id="label">Ich fühle mich:</div>
     <div class="options-panel">
         <select id="modeSelector">
-            <option value="general">Von allem etwas</option>
-            <option value="normal">Normal</option>
+            <option value="general">Unentschieden</option>
+            <option value="normal">Wütend</option>
             <option value="nerdy">Nerdy</option>
             <option value="radical">"Gesunder Menschenverstand"</option>
             <option value="conspiracy">"Aufgeklärt"</option>
         </select>
     </div>
-
-    <!--div id="ammeter">
-      <div id="dial">
-        <div id="pointer"></div>
-        <div id="gauge-background"></div>
-      </div>
-      <div class="ammeter-options">
-        <span class="option" data-mode="normal">Normal</span>
-        <span class="option" data-mode="radical">Radical</span>
-        <span class="option" data-mode="radical-as-fk">Radical as F**k</span>
-      </div>
-    </div-->
-
-    <!-- CSLab Meter -->
-    <!-- https://cslab.in/coding-in-sikar-creating-an-interactive-meter-component-with-html-css-and-javascript/ -->
-    <!-- The main container for the meter component -->
-    <div class="meter">
-      <!-- Displays the current reading value -->
-      <!--div class="readings">0</div-->
-
-      <div class="meter-options">
-        <span class="reading" data-mode="normal">Norm</span>
-        <span class="reading" data-mode="radical">Rad</span>
-        <span class="reading" data-mode="radical-as-fk">Rad F**k</span>
-      </div>
-
-      <!-- Container for the color wheel background -->
-      <div class="colors-container">
-        <div class="color-wheel">
-        </div>
-      </div>
-
-      <!-- The knob and needle of the meter -->
-      <div class="knob">
-        <div class="needle">
-          <div class="pointer"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Commented out button for changing the reading manually -->
-    <!-- <button class="change-reading-btn">Change Reading</button> -->
-
-    <!-- Hidden Result: <div class="result" id="result"></div> -->
 
     <!-- Slot Machine Variables -->
     <script src="slotmachine.js"></script>
@@ -351,33 +247,19 @@
         });
     </script>
 
-    <!-- Meter script -->
+    <!-- Modal -->
     <script text="type/javascript">
-        const pointer = document.getElementById("pointer");
-        const options = document.querySelectorAll(".option");
-        const modes = ["normal", "radical", "radical-as-fk"];
-        let currentMode = 0;
+        const infoIcon = document.getElementById('infoIcon');
+        const infoModal = document.getElementById('infoModal');
+        const closeModal = document.getElementById('closeModal');
 
-        document.getElementById("ammeter").addEventListener("click", (e) => {
-          const ammeterRect = e.currentTarget.getBoundingClientRect();
-          const clickX = e.clientX - ammeterRect.left;
-          const sectionWidth = ammeterRect.width / modes.length;
-
-          // Determine selected mode
-          currentMode = Math.min(modes.length - 1, Math.floor(clickX / sectionWidth));
-
-          // Update pointer rotation
-          const rotationAngle = -90 + currentMode * (180 / (modes.length - 1));
-          pointer.style.transform = `rotate(${rotationAngle}deg)`;
-
-          // Highlight selected option
-          options.forEach((option, index) => {
-            option.style.color = index === currentMode ? "#fff" : "#000";
-            option.style.fontWeight = index === currentMode ? "bold" : "normal";
-          });
-
-          console.log("Selected mode:", modes[currentMode]); // Use selected mode here
+        infoIcon.addEventListener('click', () => {
+            infoModal.style.display = 'block';
         });
-    </script>
+
+        closeModal.addEventListener('click', () => {
+            infoModal.style.display = 'none';
+        });
+        </script>
 </body>
 </html>

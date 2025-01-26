@@ -32,3 +32,10 @@ Also, the following audio ressources were used:
 
 * Ka-ching: https://www.myinstants.com/de/instant/ka-ching/
 * Slot machine: https://mixkit.co/free-sound-effects/slot-machine/
+
+## License
+This project is licensed under the **Beerware License**. 
+
+If you find the code useful and we meet someday, you can buy me a beer in return. Cheers!
+
+[Buy me a beer](https://www.buymeacoffee.com/anmarchio)

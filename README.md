@@ -1,6 +1,6 @@
 # Blame Game (German: Schuld-O-Mat)
 
-Who's to blame today?
+Check out the blame game on github pages: http://anmarchio.github.io/blamegame
 
 ## Description
 Blame Game is a fun and interactive slot machine game that helps you decide who or what to blame for your problems. 

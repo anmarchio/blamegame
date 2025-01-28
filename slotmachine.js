@@ -22,7 +22,7 @@ const namePools = {
             "Propagandamedien",
             "Deep State",
             "Zensurbehörden",
-            "Schlafschafe",,
+            "Schlafschafe",
             "Mark Zuckerberg",
             "rotlakierte Nazis",
             "Klimalügner",

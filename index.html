@@ -166,11 +166,12 @@
 <body>
     <div id="infoModal" class="modal">
         <div class="modal-content">
-            <p>Sie haben einen schlechten Tag? Wer kennt es nicht:<br /><br />
-            Gerade haben Ihnen Ihre Eltern eröffnet, dass sie adoptiert sind, ihre Frau hat sie verlassen und ihr Hund ist überfahren worden.
-            Sonst gelingt auch nichts. Daran muss jemand Schuld sein!!! Ganz sicher eine übergroße dunkle Macht, zwielichtige Gruppierung oder ihr persönlicher Feind!
-            Sie haben es schließlich schon immer gewusst!<br /><br />
-            Um den Schuldigen endlich zu identifizieren gibt es jetzt den <b>Schuld-O-Mat</b>!</p>
+            <p>Wer kennt es nicht:<br /><br />
+            Ihre Frau hat sie verlassen, sie wurden bei der Beförderung übergangen und ihr Hund wurde überfahren.
+            Und auch sonst gelingt nicht viel in ihrem Leben. Daran muss jemand Schuld sein!
+            Eine Übergroße macht, zwielichtige Gestalten oder ihr Nachbar, egal:
+            Sie haben es schon immer gewusst!<br /><br />
+            Der <b>Schuld-O-Mat</b> gibt Ihnen jetzt ein tägliches Update.</p>
             <button id="closeModal">Ok</button>
         </div>
     </div>
@@ -239,8 +240,7 @@
             const finalName = names[Math.floor(Math.random() * names.length)];
             slotItemsContainer.style.animation = 'none';
             slotItemsContainer.innerHTML = `<div class="slot-item">${finalName}</div>`;
-            resultDisplay.textContent = `The machine stopped on: ${finalName}`;
-			stopSound.play(); // Play stop sound
+            stopSound.play(); // Play stop sound
 		}
 
         lever.addEventListener('click', () => {

@@ -15,7 +15,7 @@ Simply pull the lever and let the machine randomly select a target from various 
 ## Usage
 1. Clone the repository:
     ```sh
-    git clone https://github.com/yourusername/blame-game.git
+    git clone https://github.com/anmarchio/blame-game.git
     ```
 2. Open the `index.html` file in your web browser to run it.
 
